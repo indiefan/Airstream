@@ -87,6 +87,10 @@ NS_ASSUME_NONNULL_END
 /// Remote control
 @property (nonatomic, readonly, nullable) AirstreamRemote *remote;
 
+/// Custom MAC Address
+@property (nonatomic, copy, nullable) NSData *macAddress;
+
+
 /// Determines if server is running
 @property (nonatomic, readonly) BOOL running;
 

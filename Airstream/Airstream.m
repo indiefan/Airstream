@@ -127,7 +127,13 @@ NSString *const ASDACPServiceType = @"_dacp._tcp";
   raopCallbacks.audio_set_coverart = audio_set_coverart;
 
   // Server settings
-  const char address[] = {0x48, 0x5d, 0x60, 0x7c, 0xee, 0x22};
+  char address[6];
+  if (self.macAddress && self.macAddress.length == 6) {
+    [self.macAddress getBytes:address length:6];
+  } else {
+    const char defaultAddress[] = {0x48, 0x5d, 0x60, 0x7c, 0xee, 0x22};
+    memcpy(address, defaultAddress, 6);
+  }
   const char *name = [self.name UTF8String];
   const char *password = [self.password UTF8String];
   unsigned short port = self.port;
